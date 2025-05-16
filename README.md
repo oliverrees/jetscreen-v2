@@ -40,12 +40,12 @@ Ensure you have the latest versions.
 Clone the **Jetscreen** repository from GitHub:
 
 ```bash
-git clone https://github.com/oliverrees/jetscreen.git
+git clone https://github.com/oliverrees/jetscreen-v2.git
 ```
 
 Navigate into the project folder:
 ```bash
-cd jetscreen
+cd jetscreen-v2
 ```
 
 ### 5. Install Dependencies
