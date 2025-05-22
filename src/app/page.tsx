@@ -7,7 +7,7 @@ import { haversineDistance } from "./lib/haversine";
 const CENTER_LAT = parseFloat(process.env.NEXT_PUBLIC_CENTER_LAT || "0");
 const CENTER_LON = parseFloat(process.env.NEXT_PUBLIC_CENTER_LON || "0");
 const RADIUS_KM = parseFloat(process.env.NEXT_PUBLIC_RADIUS_KM || "0");
-const IGNORE_LIST = (process.env.NEXT_PUBLIC_IGNORE_AIRPORT_CODE || "").split(",");
+const LOCAL_AIRPORT_LIST = (process.env.NEXT_PUBLIC_LOCAL_AIRPORT_CODES || "").split(",");
 
 export default function Home() {
   const [statePlaneData, setStatePlaneData] = useState<any>(null);
@@ -18,18 +18,10 @@ export default function Home() {
   // Code to determine if we use the origin or destination:
   let planeData = statePlaneData?.origin || {}
   planeData.whichOne = "Origin"
-  if (IGNORE_LIST.includes(statePlaneData?.origin?.iata_code)) {
-    console.log(`We made it into the Ignore List's if statement. Therefore, we should be showing the destination.`)
+  if (LOCAL_AIRPORT_LIST.includes(statePlaneData?.origin?.iata_code)) {
     planeData = statePlaneData?.destination
     planeData.whichOne = "Destination"
   }
-  console.log(`env.IGNORE_AIRPORT_CODE eval to: ${process.env.NEXT_PUBLIC_IGNORE_AIRPORT_CODE}`)
-  console.log(`IGNORE LIST eval to: ${IGNORE_LIST}`)
-  console.log(`IGNORE LIST if statement eval to: ${IGNORE_LIST.includes(statePlaneData?.origin?.iata_code)}`)
-  console.log(`Next log is the API's statePlaneData:`)
-  console.log(statePlaneData);
-  console.log(`Next log is the planeData:`)
-  console.log(planeData);
 
   const planeSlide = [
     {
@@ -43,8 +35,6 @@ export default function Home() {
       width: "w-5/12",
     },
   ];
-  console.log(`Next log is the planeSlide:`)
-  console.log(planeSlide);
 
   const slides = [
     {
