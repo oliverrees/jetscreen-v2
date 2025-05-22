@@ -7,7 +7,7 @@ import { haversineDistance } from "./lib/haversine";
 const CENTER_LAT = parseFloat(process.env.NEXT_PUBLIC_CENTER_LAT || "0");
 const CENTER_LON = parseFloat(process.env.NEXT_PUBLIC_CENTER_LON || "0");
 const RADIUS_KM = parseFloat(process.env.NEXT_PUBLIC_RADIUS_KM || "0");
-const IGNORE_LIST = (process.env.IGNORE_AIRPORT_CODE || "").split(",");
+const IGNORE_LIST = (process.env.NEXT_PUBLIC_IGNORE_AIRPORT_CODE || "").split(",");
 
 export default function Home() {
   const [statePlaneData, setStatePlaneData] = useState<any>(null);
@@ -23,7 +23,7 @@ export default function Home() {
     planeData = statePlaneData?.destination
     planeData.whichOne = "Destination"
   }
-  console.log(`env.IGNORE_AIRPORT_CODE eval to: ${process.env.IGNORE_AIRPORT_CODE}`)
+  console.log(`env.IGNORE_AIRPORT_CODE eval to: ${process.env.NEXT_PUBLIC_IGNORE_AIRPORT_CODE}`)
   console.log(`IGNORE LIST eval to: ${IGNORE_LIST}`)
   console.log(`IGNORE LIST if statement eval to: ${IGNORE_LIST.includes(statePlaneData?.origin?.iata_code)}`)
   console.log(`Next log is the API's statePlaneData:`)
