@@ -19,9 +19,17 @@ export default function Home() {
   let planeData = statePlaneData?.origin || {}
   planeData.whichOne = "Origin"
   if (IGNORE_LIST.includes(statePlaneData?.origin?.iata_code)) {
+    console.log(`We made it into the Ignore List's if statement. Therefore, we should be showing the destination.`)
     planeData = statePlaneData?.destination
     planeData.whichOne = "Destination"
   }
+  console.log(`env.IGNORE_AIRPORT_CODE eval to: ${process.env.IGNORE_AIRPORT_CODE}`)
+  console.log(`IGNORE LIST eval to: ${IGNORE_LIST}`)
+  console.log(`IGNORE LIST if statement eval to: ${IGNORE_LIST.includes(statePlaneData?.origin?.iata_code)}`)
+  console.log(`Next log is the API's statePlaneData:`)
+  console.log(statePlaneData);
+  console.log(`Next log is the planeData:`)
+  console.log(planeData);
 
   const planeSlide = [
     {
@@ -35,6 +43,8 @@ export default function Home() {
       width: "w-5/12",
     },
   ];
+  console.log(`Next log is the planeSlide:`)
+  console.log(planeSlide);
 
   const slides = [
     {
