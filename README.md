@@ -69,6 +69,7 @@ NEXT_PUBLIC_FLIGHT_DETAILS_URL=https://api.adsbdb.com/v0/callsign/
 NEXT_PUBLIC_CENTER_LAT=51.47674088740635
 NEXT_PUBLIC_CENTER_LON=-0.23339838187103154
 NEXT_PUBLIC_RADIUS_KM=2
+NEXT_PUBLIC_LOCAL_AIRPORT_CODES=YVR,YYX
 ```
 
 #### Explanation of Environment Variables:
@@ -77,6 +78,7 @@ NEXT_PUBLIC_RADIUS_KM=2
 - `NEXT_PUBLIC_CENTER_LAT`: The latitude of the center point of the map where you're tracking planes (replace with your location).
 - `NEXT_PUBLIC_CENTER_LON`: The longitude of the center point (replace with your location).
 - `NEXT_PUBLIC_RADIUS_KM`: The radius (in kilometers) for which you want to track planes around your center point.
+- `NEXT_PUBLIC_LOCAL_AIRPORT_CODES`: (Optional) The IATA codes for the local airports near you, as a comma separated list. If the flight origin is your local airport's IATA code, the Destination information will be displayed instead.
 
 ### 7. Start the Development Server
 To start the server in development mode, run the following command:
