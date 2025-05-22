@@ -16,7 +16,7 @@ export default function Home() {
   const splideRef = useRef<any>(null);
 
   // Code to determine if we use the origin or destination:
-  let planeData = statePlaneData?.origin
+  let planeData = statePlaneData?.origin || {}
   planeData.whichOne = "Origin"
   if (IGNORE_LIST.includes(statePlaneData?.origin?.iata_code)) {
     planeData = statePlaneData?.destination
