@@ -18,7 +18,7 @@ export default function Home() {
   // Code to determine if we use the origin or destination:
   let planeData = statePlaneData?.origin
   planeData.whichOne = "Origin"
-  if IGNORE_LIST.includes(statePlaneData?.origin?.iata_code) {
+  if (IGNORE_LIST.includes(statePlaneData?.origin?.iata_code)) {
     planeData = statePlaneData?.destination
     planeData.whichOne = "Destination"
   }
