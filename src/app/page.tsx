@@ -7,6 +7,7 @@ import { haversineDistance } from "./lib/haversine";
 const CENTER_LAT = parseFloat(process.env.NEXT_PUBLIC_CENTER_LAT || "0");
 const CENTER_LON = parseFloat(process.env.NEXT_PUBLIC_CENTER_LON || "0");
 const RADIUS_KM = parseFloat(process.env.NEXT_PUBLIC_RADIUS_KM || "0");
+const LOCAL_AIRPORT_LIST = (process.env.NEXT_PUBLIC_LOCAL_AIRPORT_CODES || "").split(",");
 
 export default function Home() {
   const [statePlaneData, setStatePlaneData] = useState<any>(null);
@@ -14,15 +15,23 @@ export default function Home() {
   const currentCallsign = useRef<string>("");
   const splideRef = useRef<any>(null);
 
+  // Code to determine if we use the origin or destination:
+  let planeData = statePlaneData?.origin || {}
+  planeData.whichOne = "Origin"
+  if (LOCAL_AIRPORT_LIST.includes(statePlaneData?.origin?.iata_code)) {
+    planeData = statePlaneData?.destination
+    planeData.whichOne = "Destination"
+  }
+
   const planeSlide = [
     {
-      title: "Origin City",
-      stat: statePlaneData?.origin?.municipality,
+      title: `${planeData.whichOne} City`,
+      stat: planeData?.municipality,
       width: "w-7/12",
     },
     {
       title: "Airport Code",
-      stat: statePlaneData?.origin?.iata_code,
+      stat: planeData?.iata_code,
       width: "w-5/12",
     },
   ];
